@@ -1,0 +1,62 @@
+- uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.0
+  # [OPTIONAL] Explicitly supported secret values which can be passed into the workflow from your outer workflow run.
+  #
+  # NOTE: You cannot access values from ${{ secrets }} beyond what is explicitly specified here because of the limitations of reusable Github workflows
+  secrets:
+    NPM_TOKEN: ""
+    NX_CLOUD_ACCESS_TOKEN: ""
+    NX_CLOUD_AUTH_TOKEN: ""
+  with:
+    # [REQUIRED] The number of agents which should be created as part of the workflow in order to
+    # allow Nx Cloud to intelligently distribute tasks in parallel.
+    number-of-agents: 3
+
+    # [OPTIONAL] A multi-line string containing non-secret environment variables which need to be passed from the parent workflow
+    # to the reusable workflow. The variables are defined in form `VARIABLE_NAME=value`
+    #
+    # NOTE: Environment variables cannot contain values derived from ${{ secrets }}
+    # because of how reusable workflows work
+    environment-variables: |
+      ""
+
+    # [OPTIONAL] If you want to provide a specific node-version to use you can do that here.
+    # If you do not specify one, it will respect an optional volta config you might have in
+    # your package.json, otherwise it will simply install the latest LTS version of node.
+    node-version: ""
+
+    # [OPTIONAL] If you want to provide a specific npm-version to use you can do that here.
+    # If you do not specify one, it will respect an optional volta config you might have in
+    # your package.json, otherwise it will simply install the version of npm which is bundled
+    # with the latest LTS version of node.
+    npm-version: ""
+
+    # [OPTIONAL] If you want to provide a specific yarn v1 version to use you can do that here.
+    # If you do not specify one, it will respect an optional volta config you might have in
+    # your package.json, otherwise it will simply install the latest v1 version of yarn available.
+    yarn-version: ""
+
+    # [OPTIONAL] If you want to provide a specific pnpm version to use you can do that here.
+    # If you do not specify one, it will install the latest version of pnpm available.
+    # Pnpm gets installed only if pnpm-lock.yaml is present in your repo.
+    pnpm-version: ""
+
+    # [OPTIONAL] If you want to provide specific install commands to use when installing dependencies
+    # you can do that here. The default install step is not executed when this input is given.
+    install-commands: ""
+
+    # [OPTIONAL] Provides override for type of the machine to run the workflow on
+    # The machine can be either a GitHub-hosted runner or a self-hosted runner
+    #
+    # NOTE: If you change this option, make sure it matches the main configuration
+    # Default: ubuntu-latest
+    runs-on: ""
+
+    # [OPTIONAL] If you want to override GitHub's default timeout provide a timeout expressed in minutes.
+    #
+    # NOTE: Timeout should be expressed in minutes
+    # Default: 360
+    timeout: ""
+
+    # [OPTIONAL] Provides override for repo's working directory
+    # Useful if root git repo contains multiple monorepos
+    working-directory: ""
