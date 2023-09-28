@@ -1,0 +1,22 @@
+
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    target-branch: "master"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    target-branch: "master"
+    open-pull-requests-limit: 20
+    groups:
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"  
