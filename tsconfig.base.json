@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tinkerer/ui-email": ["packages/ui/email/src/index.ts"],
+      "@tinkerer/ui-shared": ["packages/ui/shared/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
