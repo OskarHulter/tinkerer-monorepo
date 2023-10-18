@@ -10,7 +10,7 @@
     "test:affected": "nx affected -t test --parallel=3",
     "build:affected": "nx affected -t build --parallel=3",
     "build:all": "yarn nx run-many -t build --parallel=3",
-    "all:all": "yarn nx run-many -t build lint test",
+    "all": "yarn nx run-many -t build lint test",
     "format": "yarn prettier --write .",
     "clean-deps": "rm -rf ./apps/*/node_modules & rm -rf ./node_modules",
     "clean-dist": "rm -rf ./apps/*/dist & rm -rf ./dist"
@@ -22,11 +22,16 @@
     "@react-email/button": "0.0.10",
     "@react-email/html": "0.0.4",
     "@swc/helpers": "~0.5.3",
+    "@tanstack/form-core": "^0.4.2",
+    "@tanstack/react-form": "^0.4.2",
+    "@tanstack/zod-form-adapter": "^0.4.2",
     "react": "18.2.0",
+    "react-charts": "beta",
     "react-dom": "18.2.0",
     "react-email": "1.9.5",
     "react-router-dom": "6.16.0",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@nx/devkit": "16.10.0",
