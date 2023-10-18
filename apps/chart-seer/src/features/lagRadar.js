@@ -1,4 +1,3 @@
-
 /**
  * lagRadar
  * License: ISC copyright: @mobz 2018
@@ -13,7 +12,7 @@ export function lagRadar(config = {}) {
     parent = document.body, // DOM node to attach to
   } = config;
 
-  const svgns = "http://www.w3.org/2000/svg";
+  const svgns = 'http://www.w3.org/2000/svg';
 
   const styles = document.createTextNode(`
     .lagRadar {
@@ -42,14 +41,14 @@ export function lagRadar(config = {}) {
   const middle = size / 2;
   const radius = middle - inset;
 
-  const $hand = $svg("path", { class: "lagRadar-hand" });
-  const $arcs = new Array(frames).fill("path").map((t) => $svg(t));
-  const $root = $svg("svg", { class: "lagRadar", height: size, width: size }, [
-    $svg("style", { type: "text/css" }, [styles]),
-    $svg("g", { class: "lagRadar-sweep" }, $arcs),
+  const $hand = $svg('path', { class: 'lagRadar-hand' });
+  const $arcs = new Array(frames).fill('path').map((t) => $svg(t));
+  const $root = $svg('svg', { class: 'lagRadar', height: size, width: size }, [
+    $svg('style', { type: 'text/css' }, [styles]),
+    $svg('g', { class: 'lagRadar-sweep' }, $arcs),
     $hand,
-    $svg("circle", {
-      class: "lagRadar-face",
+    $svg('circle', {
+      class: 'lagRadar-face',
       cx: middle,
       cy: middle,
       r: radius,
@@ -86,14 +85,14 @@ export function lagRadar(config = {}) {
     const rotation = (last.rotation + rdelta) % PI2;
     const tx = middle + radius * Math.cos(rotation);
     const ty = middle + radius * Math.sin(rotation);
-    const bigArc = rdelta < Math.PI ? "0" : "1";
+    const bigArc = rdelta < Math.PI ? '0' : '1';
     const path = `M${tx} ${ty}A${radius} ${radius} 0 ${bigArc} 0 ${last.tx} ${last.ty}L${middle} ${middle}`;
     const hue = calcHue(rdelta / speed);
 
-    $arcs[framePtr % frames].setAttribute("d", path);
-    $arcs[framePtr % frames].setAttribute("fill", `hsl(${hue}, 80%, 40%)`);
-    $hand.setAttribute("d", `M${middle} ${middle}L${tx} ${ty}`);
-    $hand.setAttribute("stroke", `hsl(${hue}, 80%, 60%)`);
+    $arcs[framePtr % frames].setAttribute('d', path);
+    $arcs[framePtr % frames].setAttribute('fill', `hsl(${hue}, 80%, 40%)`);
+    $hand.setAttribute('d', `M${middle} ${middle}L${tx} ${ty}`);
+    $hand.setAttribute('stroke', `hsl(${hue}, 80%, 60%)`);
 
     for (let i = 0; i < frames; i++) {
       $arcs[(frames + framePtr - i) % frames].style.fillOpacity =

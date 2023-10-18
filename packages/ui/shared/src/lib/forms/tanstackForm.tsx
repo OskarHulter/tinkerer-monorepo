@@ -1,9 +1,9 @@
+import { useForm } from '@tanstack/react-form';
+import type { FieldApi } from '@tanstack/react-form';
+import { zodValidator } from '@tanstack/zod-form-adapter';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { useForm } from '@tanstack/react-form';
-import { zodValidator } from '@tanstack/zod-form-adapter';
 import { z } from 'zod';
-import type { FieldApi } from '@tanstack/react-form';
 
 function FieldInfo({ field }: { field: FieldApi<any, any, unknown, unknown> }) {
   return (
@@ -46,7 +46,7 @@ export default function App() {
           <div>
             {/* A type-safe and pre-bound field component*/}
             <form.Field
-              name="firstName"
+              name='firstName'
               onChange={z
                 .string()
                 .min(3, 'First name must be at least 3 characters')}
@@ -58,7 +58,7 @@ export default function App() {
                 },
                 {
                   message: "No 'error' allowed in first name",
-                }
+                },
               )}
               children={(field) => {
                 // Avoid hasty abstractions. Render props are great!
@@ -79,7 +79,7 @@ export default function App() {
           </div>
           <div>
             <form.Field
-              name="lastName"
+              name='lastName'
               children={(field) => (
                 <>
                   <label htmlFor={field.name}>Last Name:</label>
@@ -97,7 +97,7 @@ export default function App() {
           <form.Subscribe
             selector={(state) => [state.canSubmit, state.isSubmitting]}
             children={([canSubmit, isSubmitting]) => (
-              <button type="submit" disabled={!canSubmit}>
+              <button type='submit' disabled={!canSubmit}>
                 {isSubmitting ? '...' : 'Submit'}
               </button>
             )}

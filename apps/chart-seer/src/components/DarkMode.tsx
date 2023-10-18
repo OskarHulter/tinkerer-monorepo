@@ -1,32 +1,32 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function DarkMode() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "time",
+    dataType: 'time',
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
         getValue: (datum) => datum.secondary,
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -36,12 +36,12 @@ export default function DarkMode() {
       <br />
       <ResizableBox
         style={{
-          background: "rgba(0, 27, 45, 0.9)",
-          padding: ".5rem",
-          borderRadius: "5px",
+          background: 'rgba(0, 27, 45, 0.9)',
+          padding: '.5rem',
+          borderRadius: '5px',
         }}
       >
-        <div style={{ width: "100%", height: "100%" }}>
+        <div style={{ width: '100%', height: '100%' }}>
           <Chart
             options={{
               data,

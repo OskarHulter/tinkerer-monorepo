@@ -1,34 +1,34 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function Bubble() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "linear",
+    dataType: 'linear',
     useR: true,
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
         getValue: (datum) => datum.secondary,
-        elementType: "bubble",
+        elementType: 'bubble',
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -42,11 +42,11 @@ export default function Bubble() {
             data,
             primaryAxis,
             secondaryAxes,
-            interactionMode: "closest",
+            interactionMode: 'closest',
             getDatumStyle: (datum) =>
               ({
                 circle: { r: datum.originalDatum.radius },
-              } as any),
+              }) as any,
           }}
         />
       </ResizableBox>

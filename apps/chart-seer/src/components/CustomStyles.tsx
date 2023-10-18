@@ -1,7 +1,7 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function CustomStyles() {
   const [{ activeSeriesIndex, activeDatumIndex }, setState] = React.useState({
@@ -13,19 +13,19 @@ export default function CustomStyles() {
     <div>
       {JSON.stringify({ activeSeriesIndex, activeDatumIndex }, null, 2)}
       <MyChart
-        elementType="line"
+        elementType='line'
         setState={setState}
         activeDatumIndex={activeDatumIndex}
         activeSeriesIndex={activeSeriesIndex}
       />
       <MyChart
-        elementType="area"
+        elementType='area'
         setState={setState}
         activeDatumIndex={activeDatumIndex}
         activeSeriesIndex={activeSeriesIndex}
       />
       <MyChart
-        elementType="bar"
+        elementType='bar'
         setState={setState}
         activeDatumIndex={activeDatumIndex}
         activeSeriesIndex={activeSeriesIndex}
@@ -42,22 +42,22 @@ function MyChart({
 }: any) {
   const { data, interactionMode, randomizeData } = useDemoConfig({
     series: 4,
-    interactionMode: "primary",
-    dataType: "ordinal",
-    show: ["elementType", "interactionMode"],
+    interactionMode: 'primary',
+    dataType: 'ordinal',
+    show: ['elementType', 'interactionMode'],
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
@@ -65,7 +65,7 @@ function MyChart({
         elementType,
       },
     ],
-    [elementType]
+    [elementType],
   );
 
   return (
@@ -89,7 +89,7 @@ function MyChart({
                       r: 5,
                     },
                     rectangle: {
-                      stroke: "black",
+                      stroke: 'black',
                       strokeWidth: 3,
                     },
                   }
@@ -100,7 +100,7 @@ function MyChart({
                       r: 3,
                     },
                     rectangle: {
-                      stroke: "black",
+                      stroke: 'black',
                       strokeWidth: 1,
                     },
                   }
@@ -110,17 +110,17 @@ function MyChart({
                       r: 3,
                     },
                     rectangle: {
-                      stroke: "black",
+                      stroke: 'black',
                       strokeWidth: 1,
                     },
                   }
-                : status === "groupFocused"
+                : status === 'groupFocused'
                 ? {
                     circle: {
                       r: 2,
                     },
                     rectangle: {
-                      stroke: "black",
+                      stroke: 'black',
                       strokeWidth: 0,
                     },
                   }
@@ -129,7 +129,7 @@ function MyChart({
                       r: 2,
                     },
                     rectangle: {
-                      stroke: "black",
+                      stroke: 'black',
                       strokeWidth: 0,
                     },
                   }) as any,
@@ -152,21 +152,21 @@ function MyChart({
 
             renderSVG: () => (
               <defs>
-                <linearGradient id="0" x1="0" x2="0" y1="1" y2="0">
-                  <stop offset="0%" stopColor="#17EAD9" />
-                  <stop offset="100%" stopColor="#6078EA" />
+                <linearGradient id='0' x1='0' x2='0' y1='1' y2='0'>
+                  <stop offset='0%' stopColor='#17EAD9' />
+                  <stop offset='100%' stopColor='#6078EA' />
                 </linearGradient>
-                <linearGradient id="1" x1="0" x2="0" y1="1" y2="0">
-                  <stop offset="0%" stopColor="#ff8f10" />
-                  <stop offset="100%" stopColor="#ff3434" />
+                <linearGradient id='1' x1='0' x2='0' y1='1' y2='0'>
+                  <stop offset='0%' stopColor='#ff8f10' />
+                  <stop offset='100%' stopColor='#ff3434' />
                 </linearGradient>
-                <linearGradient id="2" x1="0" x2="0" y1="1" y2="0">
-                  <stop offset="0%" stopColor="#42E695" />
-                  <stop offset="100%" stopColor="#3BB2B8" />
+                <linearGradient id='2' x1='0' x2='0' y1='1' y2='0'>
+                  <stop offset='0%' stopColor='#42E695' />
+                  <stop offset='100%' stopColor='#3BB2B8' />
                 </linearGradient>
-                <linearGradient id="3" x1="0" x2="0" y1="1" y2="0">
-                  <stop offset="0%" stopColor="#ffb302" />
-                  <stop offset="100%" stopColor="#ead700" />
+                <linearGradient id='3' x1='0' x2='0' y1='1' y2='0'>
+                  <stop offset='0%' stopColor='#ffb302' />
+                  <stop offset='100%' stopColor='#ead700' />
                 </linearGradient>
               </defs>
             ),

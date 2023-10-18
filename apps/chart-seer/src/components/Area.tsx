@@ -1,25 +1,25 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function Bar() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "time",
+    dataType: 'time',
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
@@ -29,7 +29,7 @@ export default function Bar() {
         // elementType: "area",
       },
     ],
-    []
+    [],
   );
 
   return (

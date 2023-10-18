@@ -1,7 +1,7 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function StressTest() {
   const [
@@ -34,24 +34,24 @@ export default function StressTest() {
   const { data, randomizeData } = useDemoConfig({
     series: seriesCount,
     datums: datumCount,
-    dataType: "time",
+    dataType: 'time',
   });
 
   const [primaryCursorValue, setPrimaryCursorValue] = React.useState();
   const [secondaryCursorValue, setSecondaryCursorValue] = React.useState();
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
       show: showAxes,
     }),
-    [showAxes]
+    [showAxes],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
@@ -60,7 +60,7 @@ export default function StressTest() {
         show: showAxes,
       },
     ],
-    [showAxes, showPoints]
+    [showAxes, showPoints],
   );
 
   React.useEffect(() => {
@@ -93,10 +93,10 @@ export default function StressTest() {
       <br />
       <br />
       <label>
-        Chart Count:{" "}
+        Chart Count:{' '}
         <input
-          type="number"
-          min="1"
+          type='number'
+          min='1'
           value={chartCount}
           onChange={(e) => {
             e.persist();
@@ -109,10 +109,10 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        Series Count:{" "}
+        Series Count:{' '}
         <input
-          type="number"
-          min="1"
+          type='number'
+          min='1'
           value={seriesCount}
           onChange={(e) => {
             e.persist();
@@ -125,10 +125,10 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        DatumCount Count:{" "}
+        DatumCount Count:{' '}
         <input
-          type="number"
-          min="1"
+          type='number'
+          min='1'
           value={datumCount}
           onChange={(e) => {
             e.persist();
@@ -141,9 +141,9 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        Show Points:{" "}
+        Show Points:{' '}
         <input
-          type="checkbox"
+          type='checkbox'
           checked={showPoints}
           onChange={(e) => {
             e.persist();
@@ -152,9 +152,9 @@ export default function StressTest() {
         />
       </label>
       <label>
-        Show Axes:{" "}
+        Show Axes:{' '}
         <input
-          type="checkbox"
+          type='checkbox'
           checked={showAxes}
           onChange={(e) => {
             e.persist();
@@ -164,9 +164,9 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        Memoize Series:{" "}
+        Memoize Series:{' '}
         <input
-          type="checkbox"
+          type='checkbox'
           checked={memoizeSeries}
           onChange={(e) => {
             e.persist();
@@ -176,9 +176,9 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        Live Data:{" "}
+        Live Data:{' '}
         <input
-          type="checkbox"
+          type='checkbox'
           checked={liveData}
           onChange={(e) => {
             e.persist();
@@ -188,7 +188,7 @@ export default function StressTest() {
       </label>
       <br />
       <label>
-        Live Data Update Interval:{" "}
+        Live Data Update Interval:{' '}
         <select
           value={String(liveDataInterval)}
           onChange={(e) => {
@@ -199,20 +199,20 @@ export default function StressTest() {
             }));
           }}
         >
-          <option value="16">16 ms</option>
-          <option value="32">32 ms</option>
-          <option value="50">50 ms</option>
-          <option value="100">100 ms</option>
-          <option value="250">250 ms</option>
-          <option value="500">500 ms</option>
-          <option value="1000">1000 ms</option>
+          <option value='16'>16 ms</option>
+          <option value='32'>32 ms</option>
+          <option value='50'>50 ms</option>
+          <option value='100'>100 ms</option>
+          <option value='250'>250 ms</option>
+          <option value='500'>500 ms</option>
+          <option value='1000'>1000 ms</option>
         </select>
       </label>
       <br />
       <label>
         Chart Height
         <input
-          type="number"
+          type='number'
           value={height}
           onChange={(e) => {
             setState((old) => ({ ...old, height: parseInt(e.target.value) }));

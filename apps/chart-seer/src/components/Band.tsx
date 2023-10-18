@@ -1,38 +1,38 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import { stackOffsetWiggle } from "d3-shape";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import { stackOffsetWiggle } from 'd3-shape';
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function Band() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "ordinal",
+    dataType: 'ordinal',
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
-      position: "left",
+      position: 'left',
       getValue: (datum) => datum.primary,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
-        position: "top",
+        position: 'top',
         show: false,
         getValue: (datum) => datum.secondary,
         stackOffset: stackOffsetWiggle,
         stacked: true,
       },
     ],
-    []
+    [],
   );
 
   return (

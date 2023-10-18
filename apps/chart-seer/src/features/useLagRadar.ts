@@ -1,6 +1,6 @@
-import React from "react";
-import { useWindowSize } from "@react-hook/window-size";
-import { lagRadar } from './lagRadar'
+import { useWindowSize } from '@react-hook/window-size';
+import React from 'react';
+import { lagRadar } from './lagRadar';
 
 export default function useLagRadar() {
   const [width, height] = useWindowSize();

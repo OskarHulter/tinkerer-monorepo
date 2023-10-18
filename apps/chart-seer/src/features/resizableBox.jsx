@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PropsWithChildren } from 'react';
-import { ResizableBox as ReactResizableBox, ResizableBoxProps } from 'react-resizable';
+import {
+  ResizableBox as ReactResizableBox,
+  ResizableBoxProps,
+} from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
- export default function ResizableBox({
+export default function ResizableBox({
   children,
   width = 600,
   height = 300,

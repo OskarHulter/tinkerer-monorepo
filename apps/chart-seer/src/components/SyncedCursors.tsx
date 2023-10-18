@@ -1,35 +1,35 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function SyncedCursors() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "time",
+    dataType: 'time',
   });
 
   const [primaryCursorValue, setPrimaryCursorValue] = React.useState();
   const [secondaryCursorValue, setSecondaryCursorValue] = React.useState();
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
         getValue: (datum) => datum.secondary,
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -40,11 +40,11 @@ export default function SyncedCursors() {
       <pre>
         {JSON.stringify(
           {
-            primaryCursorValue: primaryCursorValue ?? "undefined",
-            secondaryCursorValue: secondaryCursorValue ?? "undefined",
+            primaryCursorValue: primaryCursorValue ?? 'undefined',
+            secondaryCursorValue: secondaryCursorValue ?? 'undefined',
           },
           null,
-          2
+          2,
         )}
       </pre>
       <ResizableBox height={100} width={200}>
@@ -68,7 +68,7 @@ export default function SyncedCursors() {
           }}
         />
       </ResizableBox>
-      <div style={{ height: "1rem" }} />
+      <div style={{ height: '1rem' }} />
       <ResizableBox height={160} width={300}>
         <Chart
           options={{
@@ -90,7 +90,7 @@ export default function SyncedCursors() {
           }}
         />
       </ResizableBox>
-      <div style={{ height: "1rem" }} />
+      <div style={{ height: '1rem' }} />
       <ResizableBox height={300} width={500}>
         <Chart
           options={{

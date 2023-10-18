@@ -1,8 +1,8 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
-import { JSONTree } from "react-json-tree";
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import { JSONTree } from 'react-json-tree';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function GroupingModes() {
   const [{ clicked, focused }, setState] = React.useState({
@@ -13,20 +13,20 @@ export default function GroupingModes() {
   const { data, interactionMode, elementType, randomizeData, Options } =
     useDemoConfig({
       series: 10,
-      show: ["elementType", "interactionMode"],
+      show: ['elementType', 'interactionMode'],
     });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
@@ -34,7 +34,7 @@ export default function GroupingModes() {
         elementType,
       },
     ],
-    [elementType]
+    [elementType],
   );
 
   return (

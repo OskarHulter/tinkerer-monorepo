@@ -1,55 +1,55 @@
-import React from "react";
+import React from 'react';
 
 const options = {
-  elementType: ["line", "area", "bar"],
-  primaryAxisType: ["linear", "time", "log", "band"],
-  secondaryAxisType: ["linear", "time", "log", "band"],
-  primaryAxisPosition: ["top", "left", "right", "bottom"],
-  secondaryAxisPosition: ["top", "left", "right", "bottom"],
+  elementType: ['line', 'area', 'bar'],
+  primaryAxisType: ['linear', 'time', 'log', 'band'],
+  secondaryAxisType: ['linear', 'time', 'log', 'band'],
+  primaryAxisPosition: ['top', 'left', 'right', 'bottom'],
+  secondaryAxisPosition: ['top', 'left', 'right', 'bottom'],
   secondaryAxisStack: [true, false],
   primaryAxisShow: [true, false],
   secondaryAxisShow: [true, false],
-  interactionMode: ["primary", "closest"],
-  tooltipGroupingMode: ["single", "primary", "secondary", "series"],
+  interactionMode: ['primary', 'closest'],
+  tooltipGroupingMode: ['single', 'primary', 'secondary', 'series'],
   tooltipAnchor: [
-    "closest",
-    "top",
-    "bottom",
-    "left",
-    "right",
-    "center",
-    "gridTop",
-    "gridBottom",
-    "gridLeft",
-    "gridRight",
-    "gridCenter",
-    "pointer",
+    'closest',
+    'top',
+    'bottom',
+    'left',
+    'right',
+    'center',
+    'gridTop',
+    'gridBottom',
+    'gridLeft',
+    'gridRight',
+    'gridCenter',
+    'pointer',
   ],
   tooltipAlign: [
-    "auto",
-    "top",
-    "bottom",
-    "left",
-    "right",
-    "topLeft",
-    "topRight",
-    "bottomLeft",
-    "bottomRight",
-    "center",
+    'auto',
+    'top',
+    'bottom',
+    'left',
+    'right',
+    'topLeft',
+    'topRight',
+    'bottomLeft',
+    'bottomRight',
+    'center',
   ],
   snapCursor: [true, false],
 } as const;
 
-type DataType = "time" | "ordinal" | "linear";
-type ElementType = typeof options["elementType"][number];
-type PrimaryAxisType = typeof options["primaryAxisType"][number];
-type SecondaryAxisType = typeof options["secondaryAxisType"][number];
-type PrimaryAxisPosition = typeof options["primaryAxisPosition"][number];
-type SecondaryAxisPosition = typeof options["secondaryAxisPosition"][number];
-type TooltipAnchor = typeof options["tooltipAnchor"][number];
-type TooltipAlign = typeof options["tooltipAlign"][number];
-type InteractionMode = typeof options["interactionMode"][number];
-type TooltipGroupingMode = typeof options["tooltipGroupingMode"][number];
+type DataType = 'time' | 'ordinal' | 'linear';
+type ElementType = typeof options['elementType'][number];
+type PrimaryAxisType = typeof options['primaryAxisType'][number];
+type SecondaryAxisType = typeof options['secondaryAxisType'][number];
+type PrimaryAxisPosition = typeof options['primaryAxisPosition'][number];
+type SecondaryAxisPosition = typeof options['secondaryAxisPosition'][number];
+type TooltipAnchor = typeof options['tooltipAnchor'][number];
+type TooltipAlign = typeof options['tooltipAlign'][number];
+type InteractionMode = typeof options['interactionMode'][number];
+type TooltipGroupingMode = typeof options['tooltipGroupingMode'][number];
 
 const optionKeys = Object.keys(options) as (keyof typeof options)[];
 
@@ -61,20 +61,20 @@ export default function useChartConfig({
   count = 1,
   resizable = true,
   canRandomize = true,
-  dataType = "time",
-  elementType = "line",
-  primaryAxisType = "time",
-  secondaryAxisType = "linear",
-  primaryAxisPosition = "bottom",
-  secondaryAxisPosition = "left",
+  dataType = 'time',
+  elementType = 'line',
+  primaryAxisType = 'time',
+  secondaryAxisType = 'linear',
+  primaryAxisPosition = 'bottom',
+  secondaryAxisPosition = 'left',
   primaryAxisStack = false,
   secondaryAxisStack = true,
   primaryAxisShow = true,
   secondaryAxisShow = true,
-  tooltipAnchor = "closest",
-  tooltipAlign = "auto",
-  interactionMode = "primary",
-  tooltipGroupingMode = "primary",
+  tooltipAnchor = 'closest',
+  tooltipAlign = 'auto',
+  interactionMode = 'primary',
+  tooltipGroupingMode = 'primary',
   snapCursor = true,
 }: {
   series: number;
@@ -147,8 +147,8 @@ export default function useChartConfig({
             setState((old) => ({
               ...old,
               [option]:
-                typeof options[option][0] === "boolean"
-                  ? value === "true"
+                typeof options[option][0] === 'boolean'
+                  ? value === 'true'
                   : value,
             }))
           }
@@ -174,7 +174,7 @@ function makeDataFrom(
   dataType: DataType,
   series: number,
   datums: number,
-  useR?: boolean
+  useR?: boolean,
 ) {
   return [
     ...new Array(series || Math.max(Math.round(Math.random() * 5), 1)),
@@ -185,7 +185,7 @@ function makeSeries(
   i: number,
   dataType: DataType,
   datums: number,
-  useR?: boolean
+  useR?: boolean,
 ) {
   const start = 0;
   const startDate = new Date();
@@ -206,11 +206,11 @@ function makeSeries(
     data: [...new Array(length)].map((_, i) => {
       let x;
 
-      if (dataType === "ordinal") {
+      if (dataType === 'ordinal') {
         x = `Ordinal Group ${start + i}`;
-      } else if (dataType === "time") {
+      } else if (dataType === 'time') {
         x = new Date(startDate.getTime() + 60 * 1000 * 60 * 24 * i);
-      } else if (dataType === "linear") {
+      } else if (dataType === 'linear') {
         x =
           Math.random() < nullChance
             ? null
@@ -231,7 +231,7 @@ function makeSeries(
         : rMax -
           Math.floor(
             Math.log(Math.random() * (distribution ** rMax - rMin) + rMin) /
-              Math.log(distribution)
+              Math.log(distribution),
           );
 
       return {

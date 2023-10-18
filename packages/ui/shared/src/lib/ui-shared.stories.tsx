@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { UiShared } from './ui-shared';
 
-import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { within } from '@storybook/testing-library';
 
 const meta: Meta<typeof UiShared> = {
   component: UiShared,

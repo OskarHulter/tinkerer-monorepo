@@ -1,37 +1,37 @@
-import ResizableBox from "../features/resizableBox";
-import useDemoConfig from "../features/useDemoConfig";
-import { stackOffsetWiggle } from "d3-shape";
-import React from "react";
-import { AxisOptions, Chart } from "react-charts";
+import { stackOffsetWiggle } from 'd3-shape';
+import React from 'react';
+import { AxisOptions, Chart } from 'react-charts';
+import ResizableBox from '../features/resizableBox';
+import useDemoConfig from '../features/useDemoConfig';
 
 export default function Steam() {
   const { data, randomizeData } = useDemoConfig({
     series: 10,
-    dataType: "time",
+    dataType: 'time',
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>
+    AxisOptions<typeof data[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as Date,
     }),
-    []
+    [],
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]["data"][number]>[]
+    AxisOptions<typeof data[number]['data'][number]>[]
   >(
     () => [
       {
         getValue: (datum) => datum.secondary,
-        elementType: "area",
+        elementType: 'area',
         // or
         // stacked: true,
         stackOffset: stackOffsetWiggle,
       },
     ],
-    []
+    [],
   );
 
   return (

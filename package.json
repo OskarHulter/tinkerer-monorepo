@@ -12,8 +12,9 @@
     "build:all": "yarn nx run-many -t build --parallel=3",
     "all": "yarn nx run-many -t build lint test",
     "format": "yarn prettier --write .",
-    "check": "yarn dlx @biomejs/biome check .",
-    "write": "yarn dlx @biomejs/biome format . --write",
+    "check": "yarn biome check .",
+    "write": "yarn biome format . --write",
+    "lint":"yarn biome lint . --apply",
     "clean-deps": "rm -rf ./apps/*/node_modules & rm -rf ./node_modules",
     "clean-dist": "rm -rf ./apps/*/dist & rm -rf ./dist"
   },
