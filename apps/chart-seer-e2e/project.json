@@ -1,0 +1,22 @@
+{
+  "name": "chart-seer-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/chart-seer-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/chart-seer-e2e"],
+      "options": {
+        "config": "apps/chart-seer-e2e/playwright.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/chart-seer-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "implicitDependencies": ["chart-seer"]
+}
