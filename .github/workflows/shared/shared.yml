@@ -1,0 +1,36 @@
+name: shared
+description: Steps shared between workflows
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up NodeJS
+      id: setup-node-js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: .nvmrc
+        registry-url: https://npm.pkg.github.com/
+        scope: '@org'
+
+    - name: Installing
+      id: installing
+      run: npm run install
+      shell: bash
+
+    - name: Building
+      id: building
+      run: npm run build
+      shell: bash
+
+    - name: Linting
+      id: linting
+      run: |
+        cd app
+        npm run lint
+      shell: bash
+
+    - name: Testing
+      id: testing
+      run: |
+        cd app
+        npm run test
+      shell: bash

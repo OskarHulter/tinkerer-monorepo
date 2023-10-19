@@ -13,7 +13,7 @@
     "test-dev": "yarn exec playwright test",
     "test-prod": "NODE_ENV=production yarn exec playwright test",
     "test": "yarn test-dev && yarn test-prod",
-    "test:update": "TYPE=update yarn exec playwright test -u",
+    "test:update": "yarn exec playwright test -u",
     "lint:affected": "nx affected -t lint --parallel=3",
     "test:affected": "nx affected -t test --parallel=3",
     "build:affected": "nx affected -t build --parallel=3",
