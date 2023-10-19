@@ -1,0 +1,67 @@
+name: Build and run tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  packages: read
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_ACCESS }}
+  SENTRY_DRY_RUN: 'true'
+
+jobs:
+  # Just chilling here until we migrate the rest of the travis build
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout the repo
+  #       uses: actions/checkout@v3
+
+  #     - name: Install and build
+  #       id: shared_build_steps
+  #       uses: ./.github/workflows/shared
+
+  accessibility-tests:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v3
+
+      - name: Set up NodeJS
+        id: setup-node-js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://npm.pkg.github.com/
+          scope: '@org'
+
+      - name: Installing
+        id: installing
+        run: npm run install
+        shell: bash
+
+      - name: Installing tpcfn
+        uses: org/githubactions-tpcfn@v1
+        with:
+          escalated_token: ${{ secrets.PACKAGE_ACCESS }}
+
+      - name: Run Playwright tests
+        uses: BerniWittmann/background-server-action@v1
+        with:
+          command: npm run test:ci
+          build: npm run build
+          start: npm run dev:ci
+          wait-on: 'http://localhost:8080/end-of-the-line'
+        env:
+          CI: true
+      - name: Upload Playwright Screenshots and Results
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-artifacts
+          path: app/test-results/
+          if-no-files-found: ignore
