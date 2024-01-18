@@ -1,0 +1,54 @@
+###############################################
+# Base workflow for action self-test upon PRs
+# and/or direct pushes to main branch
+###############################################
+name: 'githubactions-packageassets: test workflow'
+
+on:
+  pull_request:
+
+env:
+  AWS_REGION: 'eu-west-1'
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    name: 'githubactions-packageassets: test job'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.DEFAULT_AWS_ROLE_TO_ASSUME }} # shared with all repos
+          aws-region: ${{ env.AWS_REGION }}
+      # the action itself
+      - name: Run packageassets action
+        id: packageassets-action-execute
+        uses: ./
+
+      # The following automate documentation on README.md from comments set
+      # on action.yml itself. This will make your life easier and not worry about
+      # updating documentation upon changes of your action.
+      # See: https://github.com/npalm/action-docs-action
+      - name: Run GitHub Action Updater
+        id: action-update-readme
+        uses: npalm/action-docs-action@v1.3.0
+        with:
+          actionFile: action.yaml
+
+      # Auto commit any changes dones by GitHub Action Updater
+      # See: https://github.com/stefanzweifel/git-auto-commit-action
+      - name: Commit Changes
+        id: action-update-gitcommit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply Commit Changes

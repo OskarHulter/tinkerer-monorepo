@@ -1,0 +1,50 @@
+name: Publishment
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'chore(release)') }}
+    steps:
+      - uses: ./.github/actions/test
+
+  release-preliminar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Preliminar Version
+        run: npx nx version --dry-run
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [release-preliminar, test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - uses:
+          ./.github/actions/download-build
+
+          # Use npx instead of yarn because yarn automagically sets NPM_* environment variables
+          # like NPM_CONFIG_REGISTRY so npm publish ends up ignoring the .npmrc file
+          # which is set up by `setup-node` action.
+      # - name: Version and Publishment
+      #   run: npx nx version
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # - name: Tag last-release
+      #   run: git tag --force last-release
+
+      # - name: Push to protected branch
+      #   uses: CasperWA/push-protected@v2.14.0
+      #   with:
+      #     token: ${{ secrets.MANAGE_REPO_TOKEN }}
+      #     ref: ${{ github.ref }}
+      #     tags: true
+      #     unprotect_reviews: true
+      #     force: true
