@@ -10,18 +10,23 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
+# Use the currently executing project name in your command.:
+# yarn nx affected -t build --tag=$NX_TASK_TARGET_PROJECT:latest
+# yarn nx affected -t release --exclude='*,!tag:latest'
 jobs:
   main:
-    name: Nx Cloud - Main Job
+    name: Release package
     uses: ./.github/workflows/nx-cloud-main.yml
     with:
       working-directory: ./integration-tests/yarn-berry
       parallel-commands: |
         yarn nx format:check
       parallel-commands-on-agents: |
-        yarn nx affected --target=lint --parallel=3
-        yarn nx affected --target=test --parallel=3 --ci --code-coverage
-        yarn nx affected --target=build --parallel=3
+        yarn nx affected -t build --parallel=1 --tag=$NX_TASK_TARGET_PROJECT:latest
+        yarn nx affected -t lint --parallel=1
+        yarn nx affected -t test --parallel=1 --ci --code-coverage
+        yarn nx affected -t validate --parallel=1
+        yarn nx affected -t release --parallel=1
 
   agents:
     name: Nx Cloud - Agents

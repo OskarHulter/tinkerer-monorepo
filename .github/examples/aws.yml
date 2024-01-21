@@ -1,0 +1,6 @@
+- name: Setup AWS
+        id: aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.DEFAULT_AWS_ROLE_TO_ASSUME }}
