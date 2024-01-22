@@ -1,0 +1,10 @@
+- name: Semantic Release
+  id: semantic
+  uses: cycjimmy/semantic-release-action@v4
+  with:
+    branches: main
+    working_directory: ${{ github.workspace }}/packages/${{ inputs.package-name}}
+    extends: '@org/config'
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
