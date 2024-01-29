@@ -1,0 +1,103 @@
+version: 2
+registries:
+  npm-registry-npm-pkg-github-com:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: '${{secrets.PACKAGE_ACCESS}}'
+
+updates:
+  - package-ecosystem: npm
+    open-pull-requests-limit: 10
+    directory: '/'
+    schedule:
+      # Going to start with a high interval, and then tone it back
+      interval: daily
+      timezone: Europe/Copenhagen
+      time: '04:00'
+    allow:
+      - dependency-name: '@org/*'
+    labels: [dependencies, org]
+    registries:
+      - npm-registry-npm-pkg-github-com
+    reviewers:
+      - '@org/my-team'
+    commit-message:
+      prefix: '[org prod] '
+      prefix-development: '[org dev] '
+      include: 'scope'
+
+  - package-ecosystem: npm
+    open-pull-requests-limit: 10
+    directory: '/'
+    schedule:
+      interval: daily
+      timezone: Europe/Copenhagen
+      time: '04:00'
+    labels: [dependencies, npm]
+    registries:
+      - npm-registry-npm-pkg-github-com
+    reviewers:
+      - '@org/my-team'
+    commit-message:
+      prefix: '[npm prod] '
+      prefix-development: '[npm dev] '
+      include: 'scope'
+    # Group dependency updates together in one PR
+    # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#groups
+    groups:
+      # The name of the group, it will be used in PR titles and branch
+      babel-dependencies:
+        patterns:
+          - '@semantic-release/*'
+    ignore:
+      # For all packages, ignore all patch updates
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+      # Sentry updates should all happen in unison, same as above we ignore
+      # all but one as a reminder.
+      # - dependency-name: "@sentry/react"
+      - dependency-name: '@org/*'
+      - dependency-name: 'nx'
+
+      # We ignore everything that hasn't yet been upgrade, this way we will
+      # only get the _freshest_ of new packages to consider upgrading
+      - dependency-name: '@types/marked'
+      - dependency-name: '@types/react-router'
+      - dependency-name: '@types/react-select'
+      - dependency-name: '@types/reflux'
+      - dependency-name: 'babel-jest'
+      - dependency-name: 'gettext-parser'
+      - dependency-name: 'jest-junit'
+      - dependency-name: 'marked'
+      - dependency-name: 'react-lazyload'
+      - dependency-name: 'react-refresh'
+      - dependency-name: 'react-router'
+      - dependency-name: 'react-select'
+      - dependency-name: 'reflux'
+      - dependency-name: 'sprintf-js'
+      - dependency-name: 'u2f-api'
+
+  - package-ecosystem: 'github-actions'
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    commit-message:
+      # Prefix all commit messages with "[docker] " (no colon, but a trailing whitespace)
+      prefix: '[gh-actions] '
+      include: 'scope'
+
+  # - package-ecosystem: 'docker'
+  #   directory: '/apps/servicereviewcollection/'
+  #   schedule:
+  #     interval: 'daily'
+  #   reviewers:
+  #     - '@getsentry/open-source'
+  #     - '@getsentry/security'
+  #   # security only updates
+  #   open-pull-requests-limit: 0
+  #   commit-message:
+  #     # Prefix all commit messages with "[docker] " (no colon, but a trailing whitespace)
+  #     prefix: '[docker] '
+  #     include: 'scope'
