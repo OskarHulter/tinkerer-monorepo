@@ -9,7 +9,6 @@ on:
 
 env:
   HEAD_COMMIT: ${{ github.event.inputs.commit || github.sha }}
-
   NX_CACHE_RESTORE_KEYS: |
     nx-Linux-${{ github.ref }}-${{ github.event.inputs.commit || github.sha }}
     nx-Linux-${{ github.ref }}
@@ -23,7 +22,7 @@ concurrency:
 
 jobs:
   flaky-detector:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     name: 'Check tests for flakiness'
     # Also skip if PR is from master -> develop
@@ -52,15 +51,18 @@ jobs:
       - name: Get npm cache directory
         id: npm-cache-dir
         run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+
       - name: Get Playwright version
         id: playwright-version
         run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
+
+      - uses: actions/cache@v3i
         name: Check if Playwright browser is cached
         id: playwright-cache
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-Playwright-${{steps.playwright-version.outputs.version}}
+
       - name: Install Playwright browser if not cached
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps

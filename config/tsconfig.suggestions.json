@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+
+    "noImplicitAny": false,
+    "useUnknownInCatchVariables": false,
+    "noUncheckedIndexedAccess": true,
+
+    "declaration": false,
+    "declarationMap": false,
+    "downlevelIteration": true,
+    "noEmitHelpers": true,
+    "pretty": false,
+    "allowJs": false
+  },
+  "include": ["../{packages, apps}/**/*", "../{packages, apps}/**/*"],
+  "exclude": ["../node_modules", "../{apps, packages}/**/*.{test, spec}.*"],
+  "ts-node": {
+    "transpileOnly": true
+  }
+}
