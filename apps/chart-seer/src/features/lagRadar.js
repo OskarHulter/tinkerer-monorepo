@@ -71,12 +71,9 @@ export function lagRadar(config = {}) {
     const max_ms = 1000;
     const log_f = 10;
     const mult = max_hue / Math.log(max_ms / log_f);
-    return function (ms_delta) {
-      return (
-        max_hue -
-        Math.max(0, Math.min(mult * Math.log(ms_delta / log_f), max_hue))
-      );
-    };
+    return (ms_delta) =>
+      max_hue -
+      Math.max(0, Math.min(mult * Math.log(ms_delta / log_f), max_hue));
   })();
 
   function animate() {

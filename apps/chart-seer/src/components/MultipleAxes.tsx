@@ -14,7 +14,7 @@ export default function MultipleAxes() {
   data.forEach((d, i) => (d.secondaryAxisId = i > 2 ? '2' : undefined));
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
@@ -25,7 +25,7 @@ export default function MultipleAxes() {
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {

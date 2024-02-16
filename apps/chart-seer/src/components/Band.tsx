@@ -11,7 +11,7 @@ export default function Band() {
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       position: 'left',
@@ -21,7 +21,7 @@ export default function Band() {
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {

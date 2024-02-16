@@ -48,7 +48,7 @@ function MyChart({
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary,
@@ -57,7 +57,7 @@ function MyChart({
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {
@@ -94,45 +94,45 @@ function MyChart({
                     },
                   }
                 : activeDatumIndex === datum.index
-                ? {
-                    opacity: 1,
-                    circle: {
-                      r: 3,
-                    },
-                    rectangle: {
-                      stroke: 'black',
-                      strokeWidth: 1,
-                    },
-                  }
-                : datum.seriesIndex === activeSeriesIndex
-                ? {
-                    circle: {
-                      r: 3,
-                    },
-                    rectangle: {
-                      stroke: 'black',
-                      strokeWidth: 1,
-                    },
-                  }
-                : status === 'groupFocused'
-                ? {
-                    circle: {
-                      r: 2,
-                    },
-                    rectangle: {
-                      stroke: 'black',
-                      strokeWidth: 0,
-                    },
-                  }
-                : {
-                    circle: {
-                      r: 2,
-                    },
-                    rectangle: {
-                      stroke: 'black',
-                      strokeWidth: 0,
-                    },
-                  }) as any,
+                  ? {
+                      opacity: 1,
+                      circle: {
+                        r: 3,
+                      },
+                      rectangle: {
+                        stroke: 'black',
+                        strokeWidth: 1,
+                      },
+                    }
+                  : datum.seriesIndex === activeSeriesIndex
+                    ? {
+                        circle: {
+                          r: 3,
+                        },
+                        rectangle: {
+                          stroke: 'black',
+                          strokeWidth: 1,
+                        },
+                      }
+                    : status === 'groupFocused'
+                      ? {
+                          circle: {
+                            r: 2,
+                          },
+                          rectangle: {
+                            stroke: 'black',
+                            strokeWidth: 0,
+                          },
+                        }
+                      : {
+                          circle: {
+                            r: 2,
+                          },
+                          rectangle: {
+                            stroke: 'black',
+                            strokeWidth: 0,
+                          },
+                        }) as any,
             getSeriesStyle: (series) => {
               return {
                 color: `url(#${series.index % 4})`,

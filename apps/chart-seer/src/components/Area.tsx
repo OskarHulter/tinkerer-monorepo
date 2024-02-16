@@ -10,7 +10,7 @@ export default function Bar() {
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as Date,
@@ -19,7 +19,7 @@ export default function Bar() {
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {

@@ -10,7 +10,7 @@ export default function Line() {
   });
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
@@ -20,7 +20,7 @@ export default function Line() {
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {

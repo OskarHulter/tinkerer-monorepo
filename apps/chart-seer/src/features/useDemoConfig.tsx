@@ -41,15 +41,15 @@ const options = {
 } as const;
 
 type DataType = 'time' | 'ordinal' | 'linear';
-type ElementType = typeof options['elementType'][number];
-type PrimaryAxisType = typeof options['primaryAxisType'][number];
-type SecondaryAxisType = typeof options['secondaryAxisType'][number];
-type PrimaryAxisPosition = typeof options['primaryAxisPosition'][number];
-type SecondaryAxisPosition = typeof options['secondaryAxisPosition'][number];
-type TooltipAnchor = typeof options['tooltipAnchor'][number];
-type TooltipAlign = typeof options['tooltipAlign'][number];
-type InteractionMode = typeof options['interactionMode'][number];
-type TooltipGroupingMode = typeof options['tooltipGroupingMode'][number];
+type ElementType = (typeof options)['elementType'][number];
+type PrimaryAxisType = (typeof options)['primaryAxisType'][number];
+type SecondaryAxisType = (typeof options)['secondaryAxisType'][number];
+type PrimaryAxisPosition = (typeof options)['primaryAxisPosition'][number];
+type SecondaryAxisPosition = (typeof options)['secondaryAxisPosition'][number];
+type TooltipAnchor = (typeof options)['tooltipAnchor'][number];
+type TooltipAlign = (typeof options)['tooltipAlign'][number];
+type InteractionMode = (typeof options)['interactionMode'][number];
+type TooltipGroupingMode = (typeof options)['tooltipGroupingMode'][number];
 
 const optionKeys = Object.keys(options) as (keyof typeof options)[];
 

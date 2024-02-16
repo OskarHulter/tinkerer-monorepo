@@ -41,7 +41,7 @@ export default function StressTest() {
   const [secondaryCursorValue, setSecondaryCursorValue] = React.useState();
 
   const primaryAxis = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>
+    AxisOptions<(typeof data)[number]['data'][number]>
   >(
     () => ({
       getValue: (datum) => datum.primary as unknown as Date,
@@ -51,7 +51,7 @@ export default function StressTest() {
   );
 
   const secondaryAxes = React.useMemo<
-    AxisOptions<typeof data[number]['data'][number]>[]
+    AxisOptions<(typeof data)[number]['data'][number]>[]
   >(
     () => [
       {

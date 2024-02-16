@@ -3,9 +3,13 @@ import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  root: __dirname,
   cacheDir: '../../node_modules/.vite/chart-seer',
 
   build: {
+    outDir: '../../dist/apps/chart-seer',
+    reportCompressedSize: true,
+    commonjsOptions: { transformMixedEsModules: true },
     rollupOptions: {
       external: ['react-resizable', 'react-resizable/css/styles.css'],
     },
