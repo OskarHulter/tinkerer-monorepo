@@ -132,7 +132,23 @@
     "vite": "~4.3.9",
     "vitest": "~0.32.0"
   },
-  "packageManager": "yarn@3.6.3",
+  "peerDependencies": {
+    "@babel/core": "*",
+    "rollup": "*",
+    "webpack": "*"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    },
+    "rollup": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    }
+  },
+  "packageManager": "yarn@4.1.0",
   "browserslist": {
     "production": [
       ">0.2%",
