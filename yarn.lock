@@ -64,7 +64,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.18.9, @babel/core@npm:^7.21.3, @babel/core@npm:^7.22.5, @babel/core@npm:^7.22.9, @babel/core@npm:^7.23.2, @babel/core@npm:^7.23.5, @babel/core@npm:^7.7.5":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.14.5, @babel/core@npm:^7.18.9, @babel/core@npm:^7.21.3, @babel/core@npm:^7.22.5, @babel/core@npm:^7.22.9, @babel/core@npm:^7.23.2, @babel/core@npm:^7.23.5, @babel/core@npm:^7.7.5":
   version: 7.23.9
   resolution: "@babel/core@npm:7.23.9"
   dependencies:
@@ -1533,7 +1533,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:^7.18.6, @babel/preset-react@npm:^7.22.15":
+"@babel/preset-react@npm:^7.14.5, @babel/preset-react@npm:^7.18.6, @babel/preset-react@npm:^7.22.15":
   version: 7.23.3
   resolution: "@babel/preset-react@npm:7.23.3"
   dependencies:
@@ -7188,6 +7188,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc-node/core@npm:^1.12.0":
+  version: 1.12.0
+  resolution: "@swc-node/core@npm:1.12.0"
+  peerDependencies:
+    "@swc/core": ">= 1.3"
+    "@swc/types": ">= 0.1"
+  checksum: 10c0/b7eb65de202e76ca039556c774a638daa9b6ccaf2598b9be861000a5cf3f9260b106dcfedcbe3f80acb7675b03e5d37b20cc52575b3cb5fd770c50b939976417
+  languageName: node
+  linkType: hard
+
+"@swc-node/register@npm:~1.8.0":
+  version: 1.8.0
+  resolution: "@swc-node/register@npm:1.8.0"
+  dependencies:
+    "@swc-node/core": "npm:^1.12.0"
+    "@swc-node/sourcemap-support": "npm:^0.4.0"
+    colorette: "npm:^2.0.20"
+    debug: "npm:^4.3.4"
+    pirates: "npm:^4.0.6"
+    tslib: "npm:^2.6.2"
+  peerDependencies:
+    "@swc/core": ">= 1.3"
+    typescript: ">= 4.3"
+  checksum: 10c0/82181150a977b05d7eaf7b02c218954342e930c8700482bc71479b0dd1649f0621086e79ae67e4026dbc03b8096260af1cdae0cf40778fcc62efbeaa3bd9ca4b
+  languageName: node
+  linkType: hard
+
+"@swc-node/sourcemap-support@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@swc-node/sourcemap-support@npm:0.4.0"
+  dependencies:
+    source-map-support: "npm:^0.5.21"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/b5130e17ee255fbb04233ce0ab39480c863850ce12aafbc7e784104c10403b19a7339646abb71dbb1659b3ffd53608a48e86f174112b946ba31fd7acdb811dd0
+  languageName: node
+  linkType: hard
+
 "@swc/cli@npm:~0.1.62":
   version: 0.1.65
   resolution: "@swc/cli@npm:0.1.65"
@@ -7775,6 +7812,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tinkerer-monorepo/source@workspace:."
   dependencies:
+    "@babel/core": "npm:^7.14.5"
+    "@babel/preset-react": "npm:^7.14.5"
     "@biomejs/biome": "npm:1.5.3"
     "@ladle/react": "npm:^4.0.2"
     "@nx/devkit": "npm:18.0.4"
@@ -7794,6 +7833,7 @@ __metadata:
     "@nx/workspace": "npm:18.0.4"
     "@playwright/test": "npm:^1.41.2"
     "@react-email/button": "npm:0.0.13"
+    "@react-email/components": "npm:0.0.14"
     "@react-email/html": "npm:0.0.7"
     "@react-hook/window-size": "npm:^3.1.1"
     "@rollup/plugin-url": "npm:^7.0.0"
@@ -7813,6 +7853,7 @@ __metadata:
     "@storybook/test-runner": "npm:0.13.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@svgr/rollup": "npm:^8.1.0"
+    "@swc-node/register": "npm:~1.8.0"
     "@swc/cli": "npm:~0.1.62"
     "@swc/core": "npm:~1.3.93"
     "@swc/helpers": "npm:~0.5.3"
@@ -7881,6 +7922,12 @@ __metadata:
   peerDependenciesMeta:
     webpack:
       optional: true
+  languageName: unknown
+  linkType: soft
+
+"@tinkerer/transactional@workspace:packages/transactional":
+  version: 0.0.0-use.local
+  resolution: "@tinkerer/transactional@workspace:packages/transactional"
   languageName: unknown
   linkType: soft
 
@@ -11573,7 +11620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^2.0.10, colorette@npm:^2.0.19":
+"colorette@npm:^2.0.10, colorette@npm:^2.0.19, colorette@npm:^2.0.20":
   version: 2.0.20
   resolution: "colorette@npm:2.0.20"
   checksum: 10c0/e94116ff33b0ff56f3b83b9ace895e5bf87c2a7a47b3401b8c3f3226e050d5ef76cf4072fb3325f9dc24d1698f9b730baf4e05eeaf861d74a1883073f4c98a40
@@ -22240,7 +22287,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pirates@npm:^4.0.1, pirates@npm:^4.0.4":
+"pirates@npm:^4.0.1, pirates@npm:^4.0.4, pirates@npm:^4.0.6":
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
   checksum: 10c0/00d5fa51f8dded94d7429700fb91a0c1ead00ae2c7fd27089f0c5b63e6eca36197fe46384631872690a66f390c5e27198e99006ab77ae472692ab9c2ca903f36
@@ -25421,7 +25468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:~0.5.20":
+"source-map-support@npm:^0.5.21, source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:

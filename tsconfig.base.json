@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
@@ -10,15 +11,28 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "allowUmdGlobalAccess": true,
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "@tinkerer/ui-email": ["packages/ui/email/src/index.ts"],
-      "@tinkerer/ui-shared": ["packages/ui/shared/src/index.ts"]
+      "@tinkerer/transactional": [
+        "packages/transactional/src/index.ts"
+      ],
+      "@tinkerer/ui-email": [
+        "packages/ui/email/src/index.ts"
+      ],
+      "@tinkerer/ui-shared": [
+        "packages/ui/shared/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
